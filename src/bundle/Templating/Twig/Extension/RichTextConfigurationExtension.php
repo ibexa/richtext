@@ -22,13 +22,28 @@ final class RichTextConfigurationExtension extends AbstractExtension implements 
     /** @var \Ibexa\Contracts\FieldTypeRichText\Configuration\ProviderService */
     private $configurationProvider;
 
-    public function __construct(ProviderService $configurationProvider)
+    private bool $exposeGlobals;
+
+    public function __construct(ProviderService $configurationProvider, bool $exposeGlobals = false)
     {
         $this->configurationProvider = $configurationProvider;
+        $this->exposeGlobals = $exposeGlobals;
     }
 
     public function getGlobals(): array
     {
+        if (!$this->exposeGlobals) {
+            return [];
+        }
+
+        trigger_deprecation(
+            'ibexa/fieldtype-richtext',
+            '4.6',
+            'Richtext configuration as global Twig variable is deprecated and will be removed in 5.0. '
+            . 'Set bundle\'s configuration "ibexa_fieldtype_richtext.expose_config_as_global to false '
+            . 'and acquire RichText configuration via REST API instead.',
+        );
+
         $config = $this->configurationProvider->getConfiguration();
 
         return [

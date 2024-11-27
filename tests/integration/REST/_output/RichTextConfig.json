@@ -1,0 +1,21 @@
+{
+    "RichTextConfig": {
+        "_media-type": "application\/vnd.ibexa.api.RichTextConfig+json",
+        "customStyles": [],
+        "customTags": [],
+        "alloyEditor": {
+            "extraPlugins": [],
+            "toolbars": [],
+            "classes": [],
+            "attributes": [],
+            "nativeAttributes": {
+                "table": [
+                    "border"
+                ]
+            }
+        },
+        "CKEditor": {
+            "toolbar": []
+        }
+    }
+}

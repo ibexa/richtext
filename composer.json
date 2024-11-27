@@ -38,6 +38,7 @@
         "ibexa/search": "~4.6.x-dev",
         "ibexa/solr": "~4.6.x-dev",
         "ibexa/test-core": "~4.6.x-dev",
+        "ibexa/test-rest": "~4.6.x-dev",
         "phpstan/phpstan": "^1.9",
         "phpstan/phpstan-symfony": "^1.2",
         "phpstan/phpstan-phpunit": "^1.3",

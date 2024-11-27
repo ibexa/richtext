@@ -1,0 +1,9 @@
+services:
+    _defaults:
+        autoconfigure: true
+        autowire: true
+        public: false
+
+    Ibexa\Bundle\FieldTypeRichText\Controller\RichTextConfigController:
+        tags:
+            - controller.service_arguments

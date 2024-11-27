@@ -1,2 +1,6 @@
 ibexa.user.default_profile_image.initials:
     path: /user/default_profile_image/initials.svg
+
+ibexa.fieldtype_richtext.rest:
+    resource: '@IbexaFieldTypeRichTextBundle/Resources/config/routing_rest.yaml'
+    prefix: '%ibexa.rest.path_prefix%'

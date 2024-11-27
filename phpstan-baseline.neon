@@ -101,16 +101,6 @@ parameters:
 			path: src/bundle/DependencyInjection/IbexaFieldTypeRichTextExtension.php
 
 		-
-			message: "#^Method Ibexa\\\\Bundle\\\\FieldTypeRichText\\\\DependencyInjection\\\\IbexaFieldTypeRichTextExtension\\:\\:load\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/bundle/DependencyInjection/IbexaFieldTypeRichTextExtension.php
-
-		-
-			message: "#^Method Ibexa\\\\Bundle\\\\FieldTypeRichText\\\\DependencyInjection\\\\IbexaFieldTypeRichTextExtension\\:\\:load\\(\\) has parameter \\$configs with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/bundle/DependencyInjection/IbexaFieldTypeRichTextExtension.php
-
-		-
 			message: "#^Method Ibexa\\\\Bundle\\\\FieldTypeRichText\\\\DependencyInjection\\\\IbexaFieldTypeRichTextExtension\\:\\:prepend\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: src/bundle/DependencyInjection/IbexaFieldTypeRichTextExtension.php
@@ -147,11 +137,6 @@ parameters:
 
 		-
 			message: "#^Parameter \\#1 \\$availableSiteAccesses of method Ibexa\\\\Bundle\\\\FieldTypeRichText\\\\DependencyInjection\\\\IbexaFieldTypeRichTextExtension\\:\\:validateInlineCustomTagToolbarsConfig\\(\\) expects array, array\\|bool\\|float\\|int\\|string\\|null given\\.$#"
-			count: 1
-			path: src/bundle/DependencyInjection/IbexaFieldTypeRichTextExtension.php
-
-		-
-			message: "#^Parameter \\#1 \\$configuration of method Symfony\\\\Component\\\\DependencyInjection\\\\Extension\\\\Extension\\:\\:processConfiguration\\(\\) expects Symfony\\\\Component\\\\Config\\\\Definition\\\\ConfigurationInterface, Symfony\\\\Component\\\\Config\\\\Definition\\\\ConfigurationInterface\\|null given\\.$#"
 			count: 1
 			path: src/bundle/DependencyInjection/IbexaFieldTypeRichTextExtension.php
 

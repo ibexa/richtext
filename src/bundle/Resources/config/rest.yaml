@@ -9,3 +9,8 @@ services:
             - '@Ibexa\FieldTypeRichText\RichText\Converter\Html5Edit'
         tags:
             - { name: ibexa.rest.field_type.processor, alias: ezrichtext }
+
+    Ibexa\FieldTypeRichText\REST\Output\ValueObjectVisitor\RichTextConfigVisitor:
+        parent: Ibexa\Contracts\Rest\Output\ValueObjectVisitor
+        tags:
+            - { name: ibexa.rest.output.value_object.visitor, type: Ibexa\FieldTypeRichText\REST\Value\RichTextConfig }

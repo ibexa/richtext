@@ -11,4 +11,6 @@ services:
 
     Ibexa\Bundle\FieldTypeRichText\Templating\Twig\Extension\YoutubeIdExtractorExtension: ~
 
-    Ibexa\Bundle\FieldTypeRichText\Templating\Twig\Extension\RichTextConfigurationExtension: ~
+    Ibexa\Bundle\FieldTypeRichText\Templating\Twig\Extension\RichTextConfigurationExtension:
+        arguments:
+            $exposeGlobals: '%ibexa.field_type.richtext.expose_config_as_global%'

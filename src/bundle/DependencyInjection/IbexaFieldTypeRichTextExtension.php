@@ -14,15 +14,15 @@ use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Config\Resource\FileResource;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader;
+use Symfony\Component\HttpKernel\DependencyInjection\ConfigurableExtension;
 use Symfony\Component\Yaml\Yaml;
 
 /**
  * Ibexa RichText Field Type Bundle extension.
  */
-class IbexaFieldTypeRichTextExtension extends Extension implements PrependExtensionInterface
+class IbexaFieldTypeRichTextExtension extends ConfigurableExtension implements PrependExtensionInterface
 {
     public const EXTENSION_NAME = 'ibexa_fieldtype_richtext';
 
@@ -45,15 +45,15 @@ class IbexaFieldTypeRichTextExtension extends Extension implements PrependExtens
     }
 
     /**
-     * Load Ibexa RichText Field Type Bundle configuration.
-     *
-     * @param array $configs
-     * @param \Symfony\Component\DependencyInjection\ContainerBuilder $container
-     *
-     * @throws \Exception
+     * @param array<string, mixed> $mergedConfig
      */
-    public function load(array $configs, ContainerBuilder $container)
+    protected function loadInternal(array $mergedConfig, ContainerBuilder $container): void
     {
+        $container->setParameter(
+            'ibexa.field_type.richtext.expose_config_as_global',
+            $mergedConfig['expose_config_as_global'],
+        );
+
         $settingsLoader = new Loader\YamlFileLoader(
             $container,
             new FileLocator(__DIR__ . '/../Resources/config/settings')
@@ -82,10 +82,9 @@ class IbexaFieldTypeRichTextExtension extends Extension implements PrependExtens
         $loader->load('configuration.yaml');
         $loader->load('api.yaml');
         $loader->load('command.yaml');
+        $loader->load('controller.yaml');
 
-        $configuration = $this->getConfiguration($configs, $container);
-        $config = $this->processConfiguration($configuration, $configs);
-        $this->registerRichTextConfiguration($config, $container);
+        $this->registerRichTextConfiguration($mergedConfig, $container);
 
         (new IbexaEncoreConfigurationDumper($container))->dumpCustomConfiguration(
             self::WEBPACK_CONFIG_NAMES

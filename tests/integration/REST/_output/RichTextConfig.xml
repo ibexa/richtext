@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RichTextConfig media-type="application/vnd.ibexa.api.RichTextConfig+xml">
+ <customStyles/>
+ <customTags/>
+ <alloyEditor>
+  <value key="extraPlugins"/>
+  <value key="toolbars"/>
+  <value key="classes"/>
+  <value key="attributes"/>
+  <value key="nativeAttributes">
+   <value key="table">
+    <value>border</value>
+   </value>
+  </value>
+ </alloyEditor>
+ <CKEditor>
+  <value key="toolbar"/>
+ </CKEditor>
+</RichTextConfig>

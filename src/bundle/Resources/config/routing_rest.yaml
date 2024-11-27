@@ -1,0 +1,6 @@
+ibexa.rest.richtext_config:
+    path: /richtext-config
+    controller: 'Ibexa\Bundle\FieldTypeRichText\Controller\RichTextConfigController::loadConfigAction'
+    methods: [GET]
+    options:
+        expose: true

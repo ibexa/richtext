@@ -18,18 +18,27 @@ class Configuration extends SiteAccessConfiguration
 {
     public const CUSTOM_TAG_ATTRIBUTE_TYPES = ['number', 'string', 'boolean', 'choice', 'link'];
 
-    /**
-     * Generates the configuration tree builder.
-     *
-     * @return \Symfony\Component\Config\Definition\Builder\TreeBuilder The tree builder
-     */
-    public function getConfigTreeBuilder()
+    public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder(IbexaFieldTypeRichTextExtension::EXTENSION_NAME);
 
         $rootNode = $treeBuilder->getRootNode();
 
         $sections = $rootNode->children();
+
+        $rootNode
+            ->children()
+                ->booleanNode('expose_config_as_global')
+                    ->defaultTrue()
+                    ->setDeprecated(
+                        'ibexa/fieldtype-richtext',
+                        '4.6',
+                        'expose_config_as_global configuration is deprecated and will be removed in 5.0. '
+                        . 'Acquire RichText configuration via REST API instead.'
+                    )
+                ->end()
+            ->end();
+
         $this
             ->addEnabledAttributeTypesSection($sections);
         $this
