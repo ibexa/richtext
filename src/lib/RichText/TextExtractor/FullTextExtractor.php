@@ -10,6 +10,7 @@ namespace Ibexa\FieldTypeRichText\RichText\TextExtractor;
 
 use DOMDocument;
 use DOMNode;
+use Ibexa\Contracts\FieldTypeRichText\RichText\TextExtractor\NodeFilterInterface;
 use Ibexa\Contracts\FieldTypeRichText\RichText\TextExtractorInterface;
 
 /**
@@ -19,6 +20,13 @@ use Ibexa\Contracts\FieldTypeRichText\RichText\TextExtractorInterface;
  */
 final class FullTextExtractor implements TextExtractorInterface
 {
+    private NodeFilterInterface $filter;
+
+    public function __construct(NodeFilterInterface $filter)
+    {
+        $this->filter = $filter;
+    }
+
     public function extractText(DOMDocument $document): string
     {
         return null !== $document->documentElement
@@ -28,8 +36,12 @@ final class FullTextExtractor implements TextExtractorInterface
 
     private function extractTextFromNode(DOMNode $node): string
     {
-        $text = '';
+        if ($this->filter->filter($node) === true) {
+            // Node is excluded
+            return '';
+        }
 
+        $text = '';
         if ($node->childNodes !== null && $node->childNodes->count() > 0) {
             foreach ($node->childNodes as $child) {
                 $text .= $this->extractTextFromNode($child);

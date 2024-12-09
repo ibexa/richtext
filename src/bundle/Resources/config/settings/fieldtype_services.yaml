@@ -70,3 +70,22 @@ services:
 
     Ibexa\FieldTypeRichText\RichText\TextExtractor\FullTextExtractor: ~
 
+    Ibexa\Contracts\FieldTypeRichText\RichText\TextExtractor\NodeFilterInterface:
+        alias: Ibexa\FieldTypeRichText\RichText\TextExtractor\NodeFilter\AggregateFilter
+
+    Ibexa\Contracts\FieldTypeRichText\RichText\TextExtractor\NodeFilterFactoryInterface:
+        alias: Ibexa\FieldTypeRichText\RichText\TextExtractor\NodeFilter\NodeFilterFactory
+
+    Ibexa\FieldTypeRichText\RichText\TextExtractor\NodeFilter\NodeFilterFactory: ~
+
+    Ibexa\FieldTypeRichText\RichText\TextExtractor\NodeFilter\AggregateFilter:
+        arguments:
+            $filters: !tagged ibexa.field_type.richtext.text_extractor.node_filter
+
+    ibexa.field_type.richtext.text_extractor.node_filter.template:
+        class: Ibexa\Contracts\FieldTypeRichText\RichText\TextExtractor\NodeFilterInterface
+        factory: ['@Ibexa\Contracts\FieldTypeRichText\RichText\TextExtractor\NodeFilterFactoryInterface', 'createPathFilter']
+        arguments: ['eztemplate', 'ezconfig']
+        tags:
+            - { name: ibexa.field_type.richtext.text_extractor.node_filter }
+

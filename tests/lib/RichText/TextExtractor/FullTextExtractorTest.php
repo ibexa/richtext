@@ -8,13 +8,17 @@ declare(strict_types=1);
 
 namespace Ibexa\Tests\FieldTypeRichText\RichText\TextExtractor;
 
+use Ibexa\Contracts\FieldTypeRichText\RichText\TextExtractor\NodeFilterInterface;
 use Ibexa\FieldTypeRichText\RichText\TextExtractor\FullTextExtractor;
 
 final class FullTextExtractorTest extends BaseTest
 {
     protected function setUp(): void
     {
-        $this->textExtractor = new FullTextExtractor();
+        $filter = $this->createMock(NodeFilterInterface::class);
+        $filter->method('filter')->willReturn(false);
+
+        $this->textExtractor = new FullTextExtractor($filter);
     }
 
     public function providerForTestExtractText(): array
