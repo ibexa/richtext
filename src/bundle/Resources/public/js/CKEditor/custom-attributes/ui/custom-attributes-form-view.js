@@ -11,6 +11,7 @@ import { getTranslator } from '@ibexa-admin-ui/src/bundle/Resources/public/js/sc
 
 import { createLabeledInputNumber } from '../../common/input-number/utils';
 import { createLabeledSwitchButton } from '../../common/switch-button/utils';
+import { addMultivalueSupport } from '../../common/multivalue-dropdown/utils';
 
 class IbexaCustomAttributesFormView extends View {
     constructor(props) {
@@ -212,7 +213,7 @@ class IbexaCustomAttributesFormView extends View {
 
         config.choices.forEach((choice) => {
             itemsList.add({
-                type: 'button',
+                type: config.multiple ? 'switchbutton' : 'button',
                 model: new Model({
                     withText: true,
                     label: choice,
@@ -223,8 +224,19 @@ class IbexaCustomAttributesFormView extends View {
 
         addListToDropdown(labeledDropdown.fieldView, itemsList);
 
+        if (config.multiple) {
+            addMultivalueSupport(labeledDropdown, config, this);
+        }
+
         this.listenTo(labeledDropdown.fieldView, 'execute', (event) => {
-            const value = this.getNewValue(event.source.value, config.multiple, labeledDropdown.fieldView.element.value);
+            const dropdownValue = labeledDropdown.fieldView.element.value ?? '';
+            const value = this.getNewValue(event.source.value, config.multiple, dropdownValue);
+
+            if (config.multiple) {
+                const isSelected = value.length > dropdownValue.length;
+
+                event.source.children.get(0).element.checked = isSelected;
+            }
 
             labeledDropdown.fieldView.buttonView.set({
                 label: value,

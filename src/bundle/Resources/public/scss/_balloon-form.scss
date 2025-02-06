@@ -28,11 +28,105 @@
                     border: calculateRem(1px) solid $ibexa-color-dark-200;
                     border-radius: calculateRem(5px);
                     width: 100%;
+                    max-width: calculateRem(288px);
+
+                    .ibexa-ckeditor-dropdown-selected-items {
+                        display: flex;
+                        align-items: center;
+                        flex-wrap: nowrap;
+                        width: calculateRem(198px);
+                        overflow: hidden;
+                        position: relative;
+
+                        &__item {
+                            display: inline-block;
+                            white-space: nowrap;
+                            background: $ibexa-color-light-300;
+                            border: calculateRem(1px) solid $ibexa-color-light-300;
+                            border-radius: $ibexa-border-radius;
+                            margin-right: calculateRem(4px);
+                            font-size: calculateRem(12px);
+                            line-height: calculateRem(16px);
+                            padding: 0 calculateRem(8px);
+                        }
+                    }
+
+                    .ck-list {
+                        padding: calculateRem(4px);
+
+                        &__item {
+                            border-radius: $ibexa-border-radius;
+
+                            &:hover {
+                                color: $ibexa-color-dark;
+                                background-color: $ibexa-color-light-300;
+
+                                .ck-button {
+                                    background-color: transparent;
+                                }
+                            }
+                        }
+                    }
 
                     .ck-button.ck-dropdown__button {
-                        .ck-button__label {
-                            width: 100%;
-                            display: inline-block;
+                        .ck-button {
+                            &__label {
+                                width: 100%;
+                                display: inline-block;
+                            }
+                        }
+                    }
+
+                    .ck-dropdown__panel--multiple {
+                        .ck.ck-button {
+                            &__toggle {
+                                display: none;
+                            }
+
+                            .ibexa-ckeditor-input--checkbox {
+                                flex-shrink: 0;
+                                appearance: none;
+                                position: relative;
+                                display: inline-block;
+                                cursor: pointer;
+                                outline: none;
+                                border: calculateRem(1px) solid $ibexa-color-dark-300;
+                                width: calculateRem(16px);
+                                height: calculateRem(16px);
+                                border-radius: calculateRem(2px);
+                                margin-right: calculateRem(16px);
+
+                                &::after {
+                                    content: ' ';
+                                    position: absolute;
+                                    top: calculateRem(3px);
+                                    left: calculateRem(3px);
+                                    display: block;
+                                    width: calculateRem(8px);
+                                    height: calculateRem(5px);
+                                    border-left: calculateRem(2px) solid transparent;
+                                    border-bottom: calculateRem(2px) solid transparent;
+                                    transform: rotate(-45deg);
+                                }
+
+                                &:hover {
+                                    border-color: $ibexa-color-primary;
+                                }
+
+                                &:focus {
+                                    border-color: $ibexa-color-primary;
+                                    box-shadow: 0 0 0 calculateRem(4px) rgba($ibexa-color-primary, 0.25);
+                                }
+
+                                &:checked {
+                                    border-color: $ibexa-color-primary;
+                                    background-color: $ibexa-color-primary;
+
+                                    &::after {
+                                        border-color: $ibexa-color-white;
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -101,10 +195,6 @@
                     background-color: $ibexa-color-light;
                     box-shadow: none;
                 }
-            }
-
-            &.ck-button-revert {
-                margin-right: calculateRem(8px);
             }
 
             &.ck-button-cancel,

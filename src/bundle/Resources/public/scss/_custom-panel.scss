@@ -15,9 +15,10 @@
                         width: 100%;
 
                         .ck.ck-button {
-                            display: block;
+                            display: flex;
 
-                            .ck.ck-button__label {
+                            .ck.ck-button__label,
+                            .ibexa-ckeditor-dropdown-selected-items {
                                 width: calc(100% - calculateRem(20px));
                                 height: fit-content;
                                 white-space: normal;

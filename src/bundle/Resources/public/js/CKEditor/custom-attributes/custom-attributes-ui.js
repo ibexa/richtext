@@ -133,6 +133,10 @@ class IbexaAttributesUI extends Plugin {
         this.formView.setChildren(customAttributes, customClasses);
         this.formView.setValues(attributesValues, classesValue);
 
+        this.balloon.view.on('change:isVisible', () => {
+            this.formView.fire('ibexa-ckeditor:custom-attributes:recalculate-chips');
+        });
+
         this.balloon.add({
             view: this.formView,
             position: this.getBalloonPositionData(),
