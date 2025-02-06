@@ -145,7 +145,7 @@
     }
 
     .ck-toolbar-container {
-        z-index: calc(var(--ck-z-modal) - 1);
+        z-index: calc(var(--ck-z-modal) + 50);
 
         &.ck-balloon-panel_with-arrow {
             z-index: calc(var(--ck-z-modal) + 1);
