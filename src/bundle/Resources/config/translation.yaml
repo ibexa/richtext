@@ -5,7 +5,6 @@ services:
         public: false
 
     Ibexa\FieldTypeRichText\Translation\Extractor\OnlineEditorCustomAttributesExtractor:
-        deprecated: 'Since ibexa/fieldtype-richtext 4.6.7 the "%service_id%" service is deprecated, will be removed in 5.0.0'
         arguments:
             $siteAccessList: '%ibexa.site_access.list%'
         tags:

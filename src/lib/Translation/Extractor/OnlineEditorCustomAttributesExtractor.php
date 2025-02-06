@@ -14,9 +14,6 @@ use JMS\TranslationBundle\Model\Message\XliffMessage;
 use JMS\TranslationBundle\Model\MessageCatalogue;
 use JMS\TranslationBundle\Translation\ExtractorInterface;
 
-/**
- * @deprecated 4.6.7 The "OnlineEditorCustomAttributesExtractor" class is deprecated, will be removed in 5.0.
- */
 final class OnlineEditorCustomAttributesExtractor implements ExtractorInterface
 {
     private const MESSAGE_DOMAIN = 'online_editor';
@@ -55,7 +52,7 @@ final class OnlineEditorCustomAttributesExtractor implements ExtractorInterface
         $catalogue->add($this->createMessage(self::CLASS_LABEL_MESSAGE_ID, 'Class'));
 
         foreach ($this->siteAccessList as $scope) {
-            if (!$this->configResolver->hasParameter(RichText::ATTRIBUTES_SA_SETTINGS_ID)) {
+            if (!$this->configResolver->hasParameter(RichText::ATTRIBUTES_SA_SETTINGS_ID, null, $scope)) {
                 continue;
             }
             $this->extractMessagesForScope($catalogue, $scope);
