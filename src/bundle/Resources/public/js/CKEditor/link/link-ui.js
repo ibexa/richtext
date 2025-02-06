@@ -6,6 +6,7 @@ import findAttributeRange from '@ckeditor/ckeditor5-typing/src/utils/findattribu
 import IbexaLinkFormView from './ui/link-form-view';
 import IbexaButtonView from '../common/button-view/button-view';
 import { getCustomAttributesConfig, getCustomClassesConfig } from '../custom-attributes/helpers/config-helper';
+import { encodeUrlQuery } from '../helpers/url-helper';
 
 const { Translator } = window;
 
@@ -59,7 +60,7 @@ class IbexaLinkUI extends Plugin {
 
             this.isNew = false;
 
-            this.editor.execute('insertIbexaLink', { href: url, title, target, ibexaLinkClasses, ibexaLinkAttributes });
+            this.editor.execute('insertIbexaLink', { href: encodeUrlQuery(url), title, target, ibexaLinkClasses, ibexaLinkAttributes });
             this.hideForm();
         });
 
